@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMPACT Contact Center – by TAVOSZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a3a7c;
+    --navy-dark: #112660;
+    --navy-light: #2a4d9e;
+    --teal: #2bbfbe;
+    --teal-light: #4dd4d3;
+    --teal-dark: #1a9998;
+    --white: #ffffff;
+    --off-white: #f4f8fc;
+    --gray-light: #e8eef6;
+    --gray: #8a9ab5;
+    --text: #1a2540;
+    --text-light: #4a5a78;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,58,124,0.08);
+    box-shadow: 0 2px 20px rgba(26,58,124,0.08);
+    transition: all 0.3s;
+  }
+
+  .nav-logo img { height: 44px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--navy);
+    font-weight: 500;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  .btn-nav {
+    background: var(--teal);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .btn-nav:hover { background: var(--teal-dark) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, #1e4a8a 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 72px;
+  }
+
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 70% 30%, rgba(43,191,190,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 10% 80%, rgba(43,191,190,0.10) 0%, transparent 40%);
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-shapes {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55%;
+    height: 100%;
+    opacity: 0.07;
+  }
+
+  .hero-shapes::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border: 2px solid var(--teal);
+    border-radius: 50%;
+    right: 100px; top: 50%;
+    transform: translateY(-50%);
+    animation: pulse-ring 4s ease-in-out infinite;
+  }
+
+  .hero-shapes::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border: 2px solid var(--teal-light);
+    border-radius: 50%;
+    right: 200px; top: 50%;
+    transform: translateY(-50%);
+    animation: pulse-ring 4s ease-in-out infinite 1s;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 0.07; transform: translateY(-50%) scale(1); }
+    50% { opacity: 0.15; transform: translateY(-50%) scale(1.04); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-text { animation: fadeUp 0.9s ease both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(43,191,190,0.15);
+    border: 1px solid rgba(43,191,190,0.4);
+    color: var(--teal-light);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--teal);
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title span { color: var(--teal); }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(43,191,190,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: rgba(43,191,190,0.08);
+  }
+
+  .hero-stats {
+    animation: fadeUp 0.9s ease 0.3s both;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.11);
+  }
+
+  .stat-card .number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-card .label {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ── SERVICES ── */
+  #services {
+    padding: 100px 5%;
+    background: var(--off-white);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(43,191,190,0.12);
+    color: var(--teal-dark);
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title span { color: var(--teal); }
+
+  .section-desc {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 4px 24px rgba(26,58,124,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--teal));
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(26,58,124,0.12);
+  }
+
+  .service-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .icon-navy { background: rgba(26,58,124,0.1); }
+  .icon-teal { background: rgba(43,191,190,0.12); }
+
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  .service-card .tagline {
+    color: var(--teal-dark);
+    font-size: 0.88rem;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+  }
+
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .service-list li {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+
+  .service-list li::before {
+    content: '→';
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .services-cta {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .services-cta-text h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .services-cta-text p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.92rem;
+  }
+
+  .services-cta-text .highlight {
+    color: var(--teal-light);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .services-cta-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── WHY US ── */
+  #why {
+    padding: 100px 5%;
+    background: white;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+  }
+
+  .why-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--gray-light);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+
+  .why-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(26,58,124,0.09);
+    border-color: var(--teal);
+  }
+
+  .why-icon {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .why-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.7rem;
+  }
+
+  .why-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .channels-box {
+    background: linear-gradient(135deg, var(--off-white) 0%, rgba(43,191,190,0.06) 100%);
+    border: 1px solid var(--gray-light);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .channels-box h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .channels-box .sub {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .channels-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .ch-tag {
+    background: white;
+    border: 1px solid var(--gray-light);
+    color: var(--navy);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+
+  .ch-tag:hover {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+  }
+
+  .ch-tag span { color: var(--teal); font-weight: 700; }
+
+  /* ── CASE STUDIES ── */
+  #cases {
+    padding: 100px 5%;
+    background: var(--off-white);
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .case-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 4px 20px rgba(26,58,124,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(26,58,124,0.14);
+  }
+
+  .case-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: rgba(43,191,190,0.15);
+  }
+
+  .case-industry {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .case-body {
+    padding: 1.8rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case-body p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .case-result {
+    background: rgba(43,191,190,0.08);
+    border-left: 3px solid var(--teal);
+    padding: 0.8rem 1rem;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .case-result .result-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 2px;
+  }
+
+  .case-result .result-text {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.92rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    padding: 100px 5%;
+    background: var(--navy-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #about::before {
+    content: '';
+    position: absolute;
+    right: -200px; top: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(43,191,190,0.12) 0%, transparent 70%);
+  }
+
+  #about .section-title { color: white; }
+  #about .section-tag { color: var(--teal-light); background: rgba(43,191,190,0.15); }
+  #about .section-desc { color: rgba(255,255,255,0.65); }
+
+  .about-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-quote {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(43,191,190,0.25);
+    border-left: 4px solid var(--teal);
+    border-radius: 0 16px 16px 0;
+    padding: 2rem 2.5rem;
+    margin: 3rem 0;
+  }
+
+  .about-quote blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .about-quote cite {
+    color: var(--teal-light);
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .team-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.09);
+  }
+
+  .team-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-light), var(--teal-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: white;
+    border: 2px solid rgba(43,191,190,0.4);
+  }
+
+  .team-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+
+  .team-card .role {
+    color: var(--teal-light);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 100px 5%;
+    background: var(--off-white);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--navy);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding: 1rem 1.2rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--gray-light);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 16px rgba(43,191,190,0.12);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--navy), var(--teal));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-item span {
+    color: var(--navy);
+    font-weight: 500;
+    font-size: 0.92rem;
+  }
+
+  .contact-form {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 8px 40px rgba(26,58,124,0.08);
+  }
+
+  .contact-form h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-form .form-sub {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 12px 16px;
+    border: 1.5px solid var(--gray-light);
+    border-radius: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.93rem;
+    color: var(--text);
+    background: var(--off-white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(43,191,190,0.12);
+    background: white;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-submit:hover {
+    opacity: 0.92;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(26,58,124,0.25);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-dark);
+    padding: 2.5rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo img { height: 36px; filter: brightness(10); }
+
+  .footer-copy {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.82rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--teal); }
+
+  /* ── DIVIDERS ── */
+  .wave-divider {
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile hamburger placeholder */
+  .nav-mobile-toggle { display: none; }
+
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-mobile-toggle { display: block; }
+    .services-cta { text-align: center; justify-content: center; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 2rem; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    .contact-form { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="icc.png" alt="IMPACT Contact Center by TAVOSZ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    <div style="display:none; align-items:center; gap:10px;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:var(--navy);letter-spacing:0.02em;">IMPACT <span style="color:var(--teal)">CC</span></span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Szolgáltatások</a></li>
+    <li><a href="#why">Miért mi?</a></li>
+    <li><a href="#cases">Esettanulmányok</a></li>
+    <li><a href="#about">Rólunk</a></li>
+    <li><a href="#contact" class="btn-nav">Ajánlatot kérek</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" style="background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--navy);" onclick="this.closest('nav').querySelector('.nav-links').style.display = this.closest('nav').querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-shapes"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">10+ év tapasztalat a piacon</div>
+      <h1 class="hero-title">
+        Mérhető üzleti<br>
+        eredmények,<br>
+        <span>valódi társadalmi</span><br>
+        hatással.
+      </h1>
+      <p class="hero-subtitle">
+        Professzionális ügyfélkiszolgálás és értékesítés. Minden hívás egy lehetőség – mi kihozzuk belőle a maximumot.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">
+          <span>💬</span> Ingyenes konzultáció
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <span>📞</span> Visszahívást kérek
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="number">10+</span>
+        <span class="label">év szakmai tapasztalat a piacon</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">30+</span>
+        <span class="label">fős összeszokott operátori és vezetői csapat</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">30</span>
+        <span class="label">napon belül integráljuk folyamatait</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">24/7</span>
+        <span class="label">elérhetőség igény szerint</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div class="section-tag">Szolgáltatásaink</div>
+    <h2 class="section-title">Teljes körű<br><span>ügyfélkiszolgálás</span></h2>
+    <p class="section-desc">Bejövő és kimenő kommunikáció – minden csatornán, az Ön márkaneve alatt.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon icon-navy">📥</div>
+      <h3>Ügyfélélmény Felsőfokon</h3>
+      <p class="tagline">Minden hívás egy lehetőség a lojalitásra.</p>
+      <ul class="service-list">
+        <li>Telefonos ügyfélszolgálat & Helpdesk</li>
+        <li>E-mail, Chat és Social Media kezelés</li>
+        <li>Reklamációkezelés & Infóvonal</li>
+        <li>Túlcsorduló hívások kezelése (24/7)</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.1s">
+      <div class="service-icon icon-teal">📤</div>
+      <h3>Növekedés és Kutatás</h3>
+      <p class="tagline">Megnyitjuk a kapukat az új üzletek előtt.</p>
+      <ul class="service-list">
+        <li>Telesales (direkt és indirekt értékesítés)</li>
+        <li>Leadgenerálás & Időpontegyeztetés</li>
+        <li>Piackutatás & Közvélemény-kutatás</li>
+        <li>Adatbázis frissítés & GDPR nyilatkoztatás</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="services-cta reveal">
+    <div class="services-cta-text">
+      <h4>Mennyibe kerül?</h4>
+      <p>Minden projekt egyedi. Küldje el röviden igényeit, és <strong style="color:white">24 órán belül visszahívjuk.</strong></p>
+      <p class="highlight" style="margin-top:0.5rem">Ár-érték arányban a legjobb választás az IMPACT Contact Center.</p>
+    </div>
+    <div class="services-cta-btns">
+      <a href="#contact" class="btn-primary">Kérek ajánlatot</a>
+      <a href="#contact" class="btn-secondary">Visszahívást kérek</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-header reveal">
+    <div class="section-tag">Miért minket?</div>
+    <h2 class="section-title">Amit <span>különbözővé</span> tesz minket</h2>
+    <p class="section-desc">Komplex, többcsatornás ügyfélkiszolgálás az Ön márkaneve alatt.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <span class="why-icon">🏆</span>
+      <h3>Garantált tapasztalat</h3>
+      <p>10+ év a piacon, több száz sikeres kampány az ipar legkülönbözőbb területein.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.08s">
+      <span class="why-icon">👥</span>
+      <h3>Szakértő csapat</h3>
+      <p>30+ fős, összeszokott operátori és vezetői gárda, hosszú távú munkakapcsolatokkal.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.16s">
+      <span class="why-icon">⚡</span>
+      <h3>Villámgyors indulás</h3>
+      <p>Akár 30 napon belül integráljuk folyamatait – rugalmas, gyors átállás, minimális kiesés.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.24s">
+      <span class="why-icon">🤝</span>
+      <h3>Társadalmi lojalitás</h3>
+      <p>Csapatunk munkaviszonyban dolgozik, többen megváltozott munkaképességűek – precizitásuk és hűségük az Ön minőségi garanciája.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.32s">
+      <span class="why-icon">☁️</span>
+      <h3>Zöld iroda, felhő-tech</h3>
+      <p>Felhőalapú technológia, fenntartható működés, modern infrastruktúra az Ön adatainak védelméért.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.40s">
+      <span class="why-icon">📊</span>
+      <h3>Mérhető eredmények</h3>
+      <p>Részletes riportok, valós idejű adatok – az eredmények mérhetők és transzparensek.</p>
+    </div>
+  </div>
+
+  <div class="channels-box reveal">
+    <h3>Amit biztosítunk</h3>
+    <p class="sub">Teljes körű, több csatornán átívelő ügyfélkiszolgálás – mindig az Ön igényeihez igazítva.</p>
+    <div class="channels-tags">
+      <div class="ch-tag"><span>✔</span> Telefonos ügyfélszolgálat</div>
+      <div class="ch-tag"><span>✔</span> E-mail és chat kezelés</div>
+      <div class="ch-tag"><span>✔</span> Social media ügyfélkezelés</div>
+      <div class="ch-tag"><span>✔</span> Helpdesk</div>
+      <div class="ch-tag"><span>✔</span> Reklamációkezelés</div>
+      <div class="ch-tag"><span>✔</span> Infóvonal</div>
+      <div class="ch-tag"><span>✔</span> Túlcsorduló hívások kezelése</div>
+      <div class="ch-tag"><span>✔</span> Kampányvonal működtetés</div>
+      <div class="ch-tag"><span>✔</span> 24 órás elérhetőség (igény szerint)</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="section-header reveal">
+    <div class="section-tag">Esettanulmányok</div>
+    <h2 class="section-title">Valós <span>eredmények</span>,<br>valós ügyfeleknek</h2>
+    <p class="section-desc">Három példa, hogyan váltottuk valóra ügyfeleink céljait.</p>
+  </div>
+
+  <div class="cases-grid">
+    <div class="case-card reveal">
+      <div class="case-header">
+        <div class="case-industry">Autóipar</div>
+        <div class="case-title">SUV Piaci Belépés – 1000 Fős Mintavétel</div>
+      </div>
+      <div class="case-body">
+        <p>Egy vezető autógyártó új SUV modelljének bevezetéséhez végeztünk gyors, strukturált piackutatást 1000 fős mintán, rövid határidővel.</p>
+        <div class="case-result">
+          <div class="result-label">Eredmény</div>
+          <div class="result-text">Robbanásszerű, adatvezérelt piaci belépés</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal" style="transition-delay:0.1s">
+      <div class="case-header">
+        <div class="case-industry">Szoftver & IT Támogatás</div>
+        <div class="case-title">24/7 Technikai Helpdesk – Magyar & Angol</div>
+      </div>
+      <div class="case-body">
+        <p>Folyamatos technikai ügyfélszolgálatot biztosítunk egy szoftverszolgáltató számára, két nyelven, éjjel-nappal, megszakítás nélkül.</p>
+        <div class="case-result">
+          <div class="result-label">Eredmény</div>
+          <div class="result-text">3 éve töretlen ügyfél-elégedettség</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal" style="transition-delay:0.2s">
+      <div class="case-header">
+        <div class="case-industry">Közszféra & Beruházás</div>
+        <div class="case-title">Közvélemény-kutatás Beruházási Döntéshez</div>
+      </div>
+      <div class="case-body">
+        <p>Gyors, nagymintás lakossági adatfelvételt végeztünk egy infrastrukturális beruházás társadalmi elfogadottságának mérésére.</p>
+        <div class="case-result">
+          <div class="result-label">Eredmény</div>
+          <div class="result-text">Társadalmi validáció rekordidő alatt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-content">
+    <div class="section-header reveal" style="text-align:left; max-width:100%">
+      <div class="section-tag">Rólunk</div>
+      <h2 class="section-title">A TAVOSZ és az<br><span>IMPACT Contact Center</span></h2>
+      <p class="section-desc" style="max-width:700px">A Társadalmi Vállalkozások Országos Szövetsége (TAVOSZ) elnökeként hiszünk abban, hogy a profi üzleti szolgáltatás és a társadalmi felelősségvállalás nem zárja ki, hanem erősíti egymást. Az IMPACT Contact Center ennek a meggyőződésnek az élő bizonyítéka.</p>
+    </div>
+
+    <div class="about-quote reveal">
+      <blockquote>„Hiszünk abban, hogy a profi üzleti szolgáltatás és a társadalmi felelősségvállalás nem zárja ki, hanem erősíti egymást."</blockquote>
+      <cite>– Lechner István Zoltán, elnök</cite>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">LI</div>
+        <h4>Lechner István Zoltán</h4>
+        <span class="role">Elnök, üzletfejlesztő</span>
+      </div>
+      <div class="team-card reveal" style="transition-delay:0.08s">
+        <div class="team-avatar">FF</div>
+        <h4>Felder Frigyes</h4>
+        <span class="role">Projektvezető, üzletfejlesztő</span>
+      </div>
+      <div class="team-card reveal" style="transition-delay:0.16s">
+        <div class="team-avatar">BT</div>
+        <h4>Bánhegyiné Tanai Tünde</h4>
+        <span class="role">Ügyfélszolgálati vezető</span>
+      </div>
+      <div class="team-card reveal" style="transition-delay:0.24s">
+        <div class="team-avatar">PM</div>
+        <h4>Pásztor Melinda</h4>
+        <span class="role">Marketing menedzser</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">Kapcsolat</div>
+    <h2 class="section-title">Kérjen személyre szabott<br><span>ajánlatot</span></h2>
+    <p class="section-desc">Minden projekt egyedi. Küldje el igényeit, és 24 órán belül visszahívjuk egy személyre szabott ajánlattal!</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Lépjen velünk<br>kapcsolatba</h3>
+      <p>Nem kell azonnal döntenie. Egy rövid egyeztetéssel felmérjük az Ön igényeit, és ingyenes, kötelezettségmentes ajánlatot adunk.</p>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span>+36 70 576 2189</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <span>info@tavosz.hu</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⏱</div>
+        <span>24 órán belüli visszahívás garantálva</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <span>Hétfő–Péntek: 8:00–18:00</span>
+      </div>
+    </div>
+
+    <div class="contact-form reveal" style="transition-delay:0.15s">
+      <h3>Kérem az ajánlatot</h3>
+      <p class="form-sub">Töltse ki az alábbi mezőket, és hamarosan felvesszük Önnel a kapcsolatot.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Név *</label>
+          <input id="f-nev" type="text" placeholder="Az Ön neve">
+        </div>
+        <div class="form-group">
+          <label>Cégnév *</label>
+          <input id="f-cegnev" type="text" placeholder="Cég megnevezése">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-mail *</label>
+          <input id="f-email" type="email" placeholder="email@ceg.hu">
+        </div>
+        <div class="form-group">
+          <label>Telefonszám *</label>
+          <input id="f-telefon" type="tel" placeholder="+36 XX XXX XXXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Rövid üzenet</label>
+        <textarea id="f-uzenet" placeholder="Röviden írja le, miben segíthetünk Önnek..."></textarea>
+      </div>
+      <button class="btn-submit" type="button" onclick="handleSubmit(this)">
+        📩 Kérem az ajánlatot
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="icc.png" alt="IMPACT Contact Center" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span style=\'font-family:Barlow Condensed,sans-serif;font-size:1.1rem;font-weight:900;color:white;letter-spacing:0.05em;\'>IMPACT CC by TAVOSZ</span>')">
+  </div>
+  <span class="footer-copy">© 2025 IMPACT Contact Center by TAVOSZ. Minden jog fenntartva.</span>
+  <ul class="footer-links">
+    <li><a href="#">Adatvédelmi szabályzat</a></li>
+    <li><a href="#">ÁSZF</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 40) {
+      nav.style.boxShadow = '0 4px 32px rgba(26,58,124,0.15)';
+    } else {
+      nav.style.boxShadow = '0 2px 20px rgba(26,58,124,0.08)';
+    }
+  });
+
+  // ================================================================
+  // FORMSPREE BEÁLLÍTÁS
+  // 1. Regisztráljon a https://formspree.io oldalon
+  // 2. Hozzon létre egy új formot (New Form → adja meg: info@tavosz.hu)
+  // 3. Cserélje le az alábbi URL-t a saját Formspree endpoint-jára:
+  //    pl. 'https://formspree.io/f/abcd1234'
+  // ================================================================
+  const FORMSPREE_URL = 'https://formspree.io/f/xdaywzne';
+
+  async function handleSubmit(btn) {
+    const nev     = document.getElementById('f-nev').value.trim();
+    const cegnev  = document.getElementById('f-cegnev').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const telefon = document.getElementById('f-telefon').value.trim();
+    const uzenet  = document.getElementById('f-uzenet').value.trim();
+
+    if (!nev || !cegnev || !email || !telefon) {
+      showFormError('Kérjük, töltse ki az összes kötelező mezőt (*)!');
+      return;
+    }
+
+    // Gomb betöltési állapot
+    btn.disabled = true;
+    btn.textContent = '⏳ Küldés folyamatban...';
+    btn.style.opacity = '0.75';
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name:    nev,
+          company: cegnev,
+          email:   email,
+          phone:   telefon,
+          message: uzenet || '(nem adott meg üzenetet)',
+          _subject: 'Ajánlatkérés – IMPACT Contact Center – ' + cegnev,
+          _replyto: email
+        })
+      });
+
+      if (response.ok) {
+        // Sikeres küldés
+        btn.textContent = '✅ Sikeresen elküldve!';
+        btn.style.background = 'linear-gradient(135deg, #1a7c4a, #2bbfbe)';
+        btn.style.opacity = '1';
+        showFormSuccess();
+        // Mezők törlése
+        ['f-nev','f-cegnev','f-email','f-telefon','f-uzenet'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+      } else {
+        const data = await response.json();
+        throw new Error(data?.errors?.[0]?.message || 'Ismeretlen hiba');
+      }
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = '📩 Kérem az ajánlatot';
+      btn.style.opacity = '1';
+      showFormError('Hiba történt a küldés során: ' + err.message + '. Kérjük, próbálja újra, vagy hívjon minket: +36 70 576 2189');
+    }
+  }
+
+  function showFormSuccess() {
+    const existing = document.getElementById('form-feedback');
+    if (existing) existing.remove();
+    const el = document.createElement('div');
+    el.id = 'form-feedback';
+    el.style.cssText = 'margin-top:1rem;padding:1rem 1.2rem;background:rgba(43,191,190,0.12);border:1.5px solid var(--teal);border-radius:10px;color:var(--teal-dark);font-weight:600;font-size:0.92rem;line-height:1.5;';
+    el.innerHTML = '✅ <strong>Köszönjük megkeresését!</strong><br>Munkatársunk 24 órán belül felveszi Önnel a kapcsolatot.';
+    document.querySelector('.btn-submit').insertAdjacentElement('afterend', el);
+  }
+
+  function showFormError(msg) {
+    const existing = document.getElementById('form-feedback');
+    if (existing) existing.remove();
+    const el = document.createElement('div');
+    el.id = 'form-feedback';
+    el.style.cssText = 'margin-top:1rem;padding:1rem 1.2rem;background:rgba(220,50,50,0.08);border:1.5px solid #e05555;border-radius:10px;color:#c03030;font-size:0.9rem;line-height:1.5;';
+    el.textContent = '⚠️ ' + msg;
+    document.querySelector('.btn-submit').insertAdjacentElement('afterend', el);
+  }
+</script>
+</body>
+</html>
